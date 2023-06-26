@@ -5,6 +5,8 @@ import com.ad.backend.CarSystemApi.services.ICarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 public class CarController {
@@ -19,8 +21,8 @@ public class CarController {
 
     @PostMapping("/cars")
     @ResponseBody
-    public void createCar(@RequestBody Car car) {
-        carService.createCar(car);
+    public Car createCar(@Valid @RequestBody Car car) {
+        return carService.createCar(car);
     }
 
     @GetMapping("/cars/{id}")
@@ -29,12 +31,12 @@ public class CarController {
     }
 
     @PutMapping("/cars/{id}")
-    public void updateCarById(Car car) {
-        carService.updateCarById(car);
+    public Car updateCarById(@Valid @RequestBody Car car) {
+        return carService.updateCarById(car);
     }
 
     @DeleteMapping("/cars/{id}")
-    public void deleteCarById(Car car) {
-        carService.deleteCar(car);
+    public Car deleteCarById(Car car) {
+        return carService.deleteCar(car);
     }
 }

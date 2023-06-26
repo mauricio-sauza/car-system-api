@@ -1,15 +1,10 @@
 package com.ad.backend.CarSystemApi.controllers;
 
-import com.ad.backend.CarSystemApi.dao.ICarDao;
 import com.ad.backend.CarSystemApi.models.Car;
 import com.ad.backend.CarSystemApi.services.ICarService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class CarController {
@@ -19,12 +14,27 @@ public class CarController {
     @GetMapping("/cars")
     @ResponseBody
     public Iterable<Car> getAllCars() {
-        var cars = carService.getAllCars();
-        return cars;
+        return carService.getAllCars();
     }
 
     @PostMapping("/cars")
-    public void getCarsById(Car car) {
+    @ResponseBody
+    public void createCar(@RequestBody Car car) {
         carService.createCar(car);
+    }
+
+    @GetMapping("/cars/{id}")
+    public Car getCarById(Car car) {
+        return carService.findCarById(car);
+    }
+
+    @PutMapping("/cars/{id}")
+    public void updateCarById(Car car) {
+        carService.updateCarById(car);
+    }
+
+    @DeleteMapping("/cars/{id}")
+    public void deleteCarById(Car car) {
+        carService.deleteCar(car);
     }
 }

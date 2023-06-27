@@ -1,12 +1,17 @@
 package com.ad.backend.CarSystemApi.services;
 
+import com.ad.backend.CarSystemApi.DTO.CarDTO;
+import com.ad.backend.CarSystemApi.Exceptions.CarNotFoundException;
+import com.ad.backend.CarSystemApi.Exceptions.UserNotFoundException;
 import com.ad.backend.CarSystemApi.models.Car;
+
+import java.util.Optional;
 
 
 public interface ICarService {
     public Iterable<Car> getAllCars();
-    public Car createCar(Car car);
-    public Car deleteCar(Car car);
-    public Car findCarById(Car car);
-    public Car updateCarById(Car car);
+    public Car createCar(CarDTO carDto);
+    public boolean deleteCar(Long id);
+    public Optional<Car> findCarById(Long id) throws CarNotFoundException;
+    public Car updateCarById(Long id, Car car) throws UserNotFoundException;
 }

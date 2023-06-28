@@ -1,17 +1,12 @@
 package com.ad.backend.CarSystemApi.services;
 
 import com.ad.backend.CarSystemApi.DTO.CarDTO;
-import com.ad.backend.CarSystemApi.Exceptions.CarNotFoundException;
-import com.ad.backend.CarSystemApi.Exceptions.UserNotFoundException;
 import com.ad.backend.CarSystemApi.dao.ICarDao;
 import com.ad.backend.CarSystemApi.models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.util.Optional;
 
 
@@ -26,11 +21,11 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public Optional<Car> findCarById(Long id) throws CarNotFoundException {
+    public Optional<Car> findCarById(Long id) {
         Optional<Car> car = carDao.findById(id);
         if(car.isPresent()) return car;
         else {
-            throw new CarNotFoundException("Car not found with id: " + id);
+            throw new ResourceNotFoundException("Car not found with id: " + id);
         }
     }
 
@@ -41,16 +36,16 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public Car updateCarById(Long id, Car car) throws UserNotFoundException {
+    public Car updateCarById(Long id, Car car) {
         if(!carDao.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+            throw new ResourceNotFoundException("Car not found with id: " + id);
         }
         return carDao.findById(id).map(oldCar-> {
             oldCar.setBrand(car.getBrand());
             oldCar.setModel(car.getModel());
             oldCar.setColor(car.getColor());
             return carDao.save(oldCar);
-        }).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("Car not found with id: " + id));
     }
 
     @Override

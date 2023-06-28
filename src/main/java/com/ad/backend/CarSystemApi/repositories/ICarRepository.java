@@ -1,8 +1,8 @@
-package com.ad.backend.CarSystemApi.dao;
+package com.ad.backend.CarSystemApi.repositories;
 
 import com.ad.backend.CarSystemApi.models.Car;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CarRepository extends CrudRepository<Car, Long> {
+public interface ICarRepository extends CrudRepository<Car, Long> {
 
 }

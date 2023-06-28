@@ -2,16 +2,14 @@ package com.ad.backend.CarSystemApi.controllers;
 
 import com.ad.backend.CarSystemApi.DTO.CarDTO;
 import com.ad.backend.CarSystemApi.Exceptions.CarNotFoundException;
-import com.ad.backend.CarSystemApi.Exceptions.UserNotFoundException;
 import com.ad.backend.CarSystemApi.models.Car;
 import com.ad.backend.CarSystemApi.services.ICarService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Optional;
 
 
@@ -36,7 +34,7 @@ public class CarController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Car> updateCarById(@PathVariable("id") Long id, @RequestBody Car car) throws UserNotFoundException {
+    public ResponseEntity<Car> updateCarById(@PathVariable("id") Long id, @RequestBody Car car) throws CarNotFoundException {
         return ResponseEntity.ok(carService.updateCarById(id, car));
     }
 

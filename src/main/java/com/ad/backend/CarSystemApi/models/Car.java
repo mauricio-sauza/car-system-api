@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
 @Entity
 @AllArgsConstructor(staticName = "build")
+@Table(name = "cars")
 @NoArgsConstructor
 public class Car implements Serializable {
 
@@ -18,10 +18,10 @@ public class Car implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    @NotEmpty
+//    @NotEmpty
     private String brand;
-    @NotEmpty
+//    @NotEmpty
     private String model;
-    @NotEmpty
+//    @NotEmpty
     private String color;
 }

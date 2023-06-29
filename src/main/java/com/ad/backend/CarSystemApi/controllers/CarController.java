@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -19,7 +20,7 @@ public class CarController {
     @Autowired
     private ICarService carService;
     @GetMapping()
-    public ResponseEntity<Iterable<Car>> getAllCars() {
+    public ResponseEntity<ArrayList<Car>> getAllCars() {
         return ResponseEntity.ok(carService.getAllCars());
     }
 
@@ -30,7 +31,7 @@ public class CarController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<Car>> getCarById(@PathVariable("id") Long id) throws CarNotFoundException {
-        return ResponseEntity.ok(carService.findCarById(id));
+        return ResponseEntity.ok(this.carService.findCarById(id));
     }
 
     @PutMapping(path = "/{id}")

@@ -1,18 +1,19 @@
 package com.ad.backend.CarSystemApi.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Data
 @Entity
 @AllArgsConstructor(staticName = "build")
+@Getter
+@Setter
 @Table(name = "cars")
 @NoArgsConstructor
-public class Car implements Serializable {
+//public class Car implements Serializable {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

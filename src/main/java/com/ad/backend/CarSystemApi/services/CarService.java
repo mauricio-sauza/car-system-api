@@ -21,12 +21,12 @@ public class CarService implements ICarService {
     private ICarRepository carRepository;
 
     @Override
-    public ArrayList<Car> getAllCars() {
+    public ArrayList<Car> getAll() {
         return (ArrayList<Car>)  this.carRepository.findAll();
     }
 
     @Override
-    public Optional<Car> findCarById(Long id) throws CarNotFoundException {
+    public Optional<Car> findById(Long id) throws CarNotFoundException {
         Optional<Car> car = carRepository.findById(id);
         if(car.isPresent()) return car;
         else {
@@ -35,13 +35,13 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public Car createCar(CarDTO carDto) {
+    public Car create(CarDTO carDto) {
         Car car = Car.build(1L, carDto.getBrand(), carDto.getModel(), carDto.getColor());
         return carRepository.save(car);
     }
 
     @Override
-    public Car updateCarById(Long id, Car car) throws CarNotFoundException {
+    public Car update(Long id, Car car) throws CarNotFoundException {
         if(!carRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
         }
@@ -54,7 +54,7 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public boolean deleteCar(Long id) {
+    public boolean delete(Long id) {
         try {
             carRepository.deleteById(id);
             return true;

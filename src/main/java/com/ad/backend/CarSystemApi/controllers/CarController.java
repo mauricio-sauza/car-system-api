@@ -1,6 +1,7 @@
 package com.ad.backend.CarSystemApi.controllers;
 
 import com.ad.backend.CarSystemApi.DTO.CarDTO;
+import com.ad.backend.CarSystemApi.utils.response.Response;
 import com.ad.backend.CarSystemApi.Exceptions.CarNotFoundException;
 import com.ad.backend.CarSystemApi.models.Car;
 import com.ad.backend.CarSystemApi.services.ICarService;
@@ -20,28 +21,29 @@ public class CarController {
     @Autowired
     private ICarService carService;
     @GetMapping()
-    public ResponseEntity<ArrayList<Car>> getAllCars() {
-        return ResponseEntity.ok(carService.getAllCars());
+    public ResponseEntity<ArrayList<Car>> getAll() {
+        return ResponseEntity.ok( carService.getAll());
     }
 
     @PostMapping()
-    public ResponseEntity<Car> createCar(@Valid @RequestBody CarDTO carDto) {
-        return new ResponseEntity<>(carService.createCar(carDto), HttpStatus.CREATED);
+    public ResponseEntity<Car> create(@Valid @RequestBody CarDTO carDto) {
+        return new ResponseEntity<>(carService.create(carDto), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Optional<Car>> getCarById(@PathVariable("id") Long id) throws CarNotFoundException {
-        return ResponseEntity.ok(this.carService.findCarById(id));
+    public ResponseEntity<Response> getCarById(@PathVariable("id") Long id) throws CarNotFoundException {
+        return ResponseEntity.ok(new Response(HttpStatus.OK.value(), this.carService.findById(id)));
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<Car> updateCarById(@PathVariable("id") Long id, @RequestBody Car car) throws CarNotFoundException {
-        return ResponseEntity.ok(carService.updateCarById(id, car));
+        return ResponseEntity.ok(carService.update(id, car));
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteCarById(@PathVariable("id") Long id) {
-        boolean verification = this.carService.deleteCar(id);
+        boolean verification = this.carService.delete(id);
+
         if (verification) {
             return ResponseEntity.ok("Se eliminó el car con id: " + id);
         } else {

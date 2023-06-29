@@ -9,9 +9,9 @@ import java.util.Optional;
 
 
 public interface ICarService {
-    public ArrayList<Car> getAllCars();
-    public Car createCar(CarDTO carDto);
-    public boolean deleteCar(Long id);
-    public Optional<Car> findCarById(Long id) throws CarNotFoundException;
-    public Car updateCarById(Long id, Car car) throws CarNotFoundException;
+    public ArrayList<Car> getAll();
+    public Car create(CarDTO carDto);
+    public boolean delete(Long id);
+    public Optional<Car> findById(Long id) throws CarNotFoundException;
+    public Car update(Long id, Car car) throws CarNotFoundException;
 }

@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Docker
+docker-compose.yml
+docker-compose.dev.yml
+Dockerfile
+.dockerignore
+
+# git
+.gitignore
+
+.env
+package-lock.json

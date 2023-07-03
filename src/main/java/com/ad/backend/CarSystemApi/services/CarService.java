@@ -36,7 +36,7 @@ public class CarService implements ICarService {
 
     @Override
     public Car create(CarDTO carDto) {
-        Car car = Car.build(1L, carDto.getBrand(), carDto.getModel(), carDto.getColor());
+        Car car = Car.build(null, carDto.getBrand(), carDto.getModel(), carDto.getColor());
         return carRepository.save(car);
     }
 

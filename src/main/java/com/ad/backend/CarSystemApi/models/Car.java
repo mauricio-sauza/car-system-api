@@ -17,7 +17,8 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    // @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private Long id;
 //    @NotEmpty
     private String brand;

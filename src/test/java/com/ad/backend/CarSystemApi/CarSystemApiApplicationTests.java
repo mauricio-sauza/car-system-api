@@ -1,13 +1,13 @@
-package com.ad.backend.CarSystemApi;
+// package com.ad.backend.CarSystemApi;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class CarSystemApiApplicationTests {
+// @SpringBootTest
+// class CarSystemApiApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }

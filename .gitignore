@@ -38,8 +38,5 @@ docker-compose.dev.yml
 Dockerfile
 .dockerignore
 
-# git
-.gitignore
-
 .env
 package-lock.json
